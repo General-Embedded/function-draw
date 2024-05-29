@@ -16,11 +16,10 @@
 #include <wx/settings.h>
 #include <wx/string.h>
 #include <wx/stattext.h>
-#include <wx/bmpbuttn.h>
+#include <wx/button.h>
 #include <wx/bitmap.h>
 #include <wx/image.h>
 #include <wx/icon.h>
-#include <wx/button.h>
 #include <wx/sizer.h>
 #include <wx/textctrl.h>
 #include <wx/radiobut.h>
@@ -40,7 +39,7 @@ protected:
 	wxPanel* panelNaWykres;
 	wxStaticText* textTytul;
 	wxStaticText* textFunkcja;
-	wxBitmapButton* buttonFunkcjaInfo;
+	wxButton* buttonInfo;
 	wxTextCtrl* textCtrlFunkcja;
 	wxStaticText* textX;
 	wxStaticText* textXMin;
@@ -62,6 +61,10 @@ protected:
 	wxButton* buttonPrint;
 	wxButton* buttonSave;
 	wxButton* buttonGenerate;
+
+	// Virtual event handlers, override them in your derived class
+	virtual void infoClick(wxMouseEvent& event) { event.Skip(); }
+
 
 public:
 

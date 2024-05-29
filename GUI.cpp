@@ -41,14 +41,19 @@ MyFrame1::MyFrame1(wxWindow* parent, wxWindowID id, const wxString& title, const
 
 	sizerFunkcja->Add(textFunkcja, 0, wxALIGN_CENTER_VERTICAL | wxALL, 5);
 
-	buttonFunkcjaInfo = new wxBitmapButton(this, wxID_ANY, wxNullBitmap, wxPoint(-1, -1), wxDefaultSize, wxBU_AUTODRAW | wxBORDER_NONE);
-	sizerFunkcja->Add(buttonFunkcjaInfo, 0, wxALL, 5);
+	buttonInfo = new wxButton(this, wxID_ANY, wxT("?"), wxDefaultPosition, wxSize(20, 20), 0);
+	buttonInfo->SetLabelMarkup(wxT("?"));
+	buttonInfo->SetFont(wxFont(10, wxFONTFAMILY_DECORATIVE, wxFONTSTYLE_NORMAL, wxFONTWEIGHT_NORMAL, false, wxT("Showcard Gothic")));
+	buttonInfo->SetForegroundColour(wxColour(255, 0, 0));
+	buttonInfo->SetBackgroundColour(wxColour(255, 255, 255));
+
+	sizerFunkcja->Add(buttonInfo, 0, wxALL, 5);
 
 
 	sizerMenu->Add(sizerFunkcja, 1, wxALIGN_CENTER_HORIZONTAL | wxALL, 5);
 
 	textCtrlFunkcja = new wxTextCtrl(this, wxID_ANY, wxT("x^2 + y^2"), wxDefaultPosition, wxSize(260, 30), wxTE_AUTO_URL | wxTE_CENTER);
-	textCtrlFunkcja->SetFont(wxFont(12, wxFONTFAMILY_SWISS, wxFONTSTYLE_NORMAL, wxFONTWEIGHT_NORMAL, false, wxT("Calibri")));
+	textCtrlFunkcja->SetFont(wxFont(12, wxFONTFAMILY_SWISS, wxFONTSTYLE_NORMAL, wxFONTWEIGHT_NORMAL, false, wxT("@Arial Unicode MS")));
 
 	sizerMenu->Add(textCtrlFunkcja, 0, wxALIGN_CENTER_HORIZONTAL | wxALL, 5);
 
@@ -70,6 +75,7 @@ MyFrame1::MyFrame1(wxWindow* parent, wxWindowID id, const wxString& title, const
 	sizerX->Add(textXMin, 0, wxALL, 5);
 
 	textCtrlXMin = new wxTextCtrl(this, wxID_ANY, wxT("-10"), wxDefaultPosition, wxSize(50, -1), wxTE_AUTO_URL | wxTE_CENTER);
+	textCtrlXMin->SetFont(wxFont(9, wxFONTFAMILY_SWISS, wxFONTSTYLE_NORMAL, wxFONTWEIGHT_NORMAL, false, wxT("@Arial Unicode MS")));
 	textCtrlXMin->SetMinSize(wxSize(70, -1));
 
 	sizerX->Add(textCtrlXMin, 0, wxALL, 5);
@@ -82,6 +88,7 @@ MyFrame1::MyFrame1(wxWindow* parent, wxWindowID id, const wxString& title, const
 	sizerX->Add(textXMax, 0, wxALL, 5);
 
 	textCtrlXMax = new wxTextCtrl(this, wxID_ANY, wxT("10"), wxDefaultPosition, wxDefaultSize, wxTE_AUTO_URL | wxTE_CENTER);
+	textCtrlXMax->SetFont(wxFont(9, wxFONTFAMILY_SWISS, wxFONTSTYLE_NORMAL, wxFONTWEIGHT_NORMAL, false, wxT("@Arial Unicode MS")));
 	textCtrlXMax->SetMinSize(wxSize(70, -1));
 
 	sizerX->Add(textCtrlXMax, 0, wxALL, 5);
@@ -107,6 +114,7 @@ MyFrame1::MyFrame1(wxWindow* parent, wxWindowID id, const wxString& title, const
 	sizerY->Add(textYMin, 0, wxALL, 5);
 
 	textCtrlYMin = new wxTextCtrl(this, wxID_ANY, wxT("-10"), wxDefaultPosition, wxSize(50, -1), wxTE_AUTO_URL | wxTE_CENTER);
+	textCtrlYMin->SetFont(wxFont(9, wxFONTFAMILY_SWISS, wxFONTSTYLE_NORMAL, wxFONTWEIGHT_NORMAL, false, wxT("@Arial Unicode MS")));
 	textCtrlYMin->SetMinSize(wxSize(70, -1));
 
 	sizerY->Add(textCtrlYMin, 0, wxALL, 5);
@@ -119,6 +127,7 @@ MyFrame1::MyFrame1(wxWindow* parent, wxWindowID id, const wxString& title, const
 	sizerY->Add(textYMax, 0, wxALL, 5);
 
 	textCtrlYMax = new wxTextCtrl(this, wxID_ANY, wxT("10"), wxDefaultPosition, wxDefaultSize, wxTE_AUTO_URL | wxTE_CENTER);
+	textCtrlYMax->SetFont(wxFont(9, wxFONTFAMILY_SWISS, wxFONTSTYLE_NORMAL, wxFONTWEIGHT_NORMAL, false, wxT("@Arial Unicode MS")));
 	textCtrlYMax->SetMinSize(wxSize(70, -1));
 
 	sizerY->Add(textCtrlYMax, 0, wxALL, 5);
@@ -144,6 +153,7 @@ MyFrame1::MyFrame1(wxWindow* parent, wxWindowID id, const wxString& title, const
 	sizerZ->Add(textZMin, 0, wxALL, 5);
 
 	textCtrlZMin = new wxTextCtrl(this, wxID_ANY, wxT("-10"), wxDefaultPosition, wxSize(50, -1), wxTE_AUTO_URL | wxTE_CENTER);
+	textCtrlZMin->SetFont(wxFont(9, wxFONTFAMILY_SWISS, wxFONTSTYLE_NORMAL, wxFONTWEIGHT_NORMAL, false, wxT("@Arial Unicode MS")));
 	textCtrlZMin->SetMinSize(wxSize(70, -1));
 
 	sizerZ->Add(textCtrlZMin, 0, wxALL, 5);
@@ -156,6 +166,7 @@ MyFrame1::MyFrame1(wxWindow* parent, wxWindowID id, const wxString& title, const
 	sizerZ->Add(textZMax, 0, wxALL, 5);
 
 	textCtrlZMax = new wxTextCtrl(this, wxID_ANY, wxT("10"), wxDefaultPosition, wxDefaultSize, wxTE_AUTO_URL | wxTE_CENTER);
+	textCtrlZMax->SetFont(wxFont(9, wxFONTFAMILY_SWISS, wxFONTSTYLE_NORMAL, wxFONTWEIGHT_NORMAL, false, wxT("@Arial Unicode MS")));
 	textCtrlZMax->SetMinSize(wxSize(70, -1));
 
 	sizerZ->Add(textCtrlZMax, 0, wxALL, 5);
@@ -214,8 +225,14 @@ MyFrame1::MyFrame1(wxWindow* parent, wxWindowID id, const wxString& title, const
 	this->Layout();
 
 	this->Centre(wxBOTH);
+
+	// Connect Events
+	buttonInfo->Connect(wxEVT_LEFT_DCLICK, wxMouseEventHandler(MyFrame1::infoClick), NULL, this);
 }
 
 MyFrame1::~MyFrame1()
 {
+	// Disconnect Events
+	buttonInfo->Disconnect(wxEVT_LEFT_DCLICK, wxMouseEventHandler(MyFrame1::infoClick), NULL, this);
+
 }
