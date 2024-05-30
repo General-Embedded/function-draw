@@ -13,6 +13,7 @@ GUIMyFrame1::GUIMyFrame1(wxWindow* parent)
 
 void GUIMyFrame1::showInfo(wxMouseEvent& event)
 {
+	//uzupe³niæ o instrukcjê!
 	wxMessageDialog* infoDialog = new wxMessageDialog(this, "-> use \"sqrt()\" as aquare root\n->use \"^n\" to raise to the n-th power", 
 															"How to plot?", wxOK | wxICON_INFORMATION);
 	infoDialog->ShowModal();
@@ -21,11 +22,8 @@ void GUIMyFrame1::showInfo(wxMouseEvent& event)
 
 bool GUIMyFrame1::checkFunction()
 {
-	function = textCtrlFunkcja->GetValue().ToStdString();
-
-	//sprawdzanie porpawnosci wprowadzonej funkcji
+	//sprawdzanie porpawnosci wprowadzonej funkcji!
 	if ( false ) {
-		function = "";
 		textCtrlFunkcja->SetValue("");
 
 		return false;
@@ -117,6 +115,8 @@ void GUIMyFrame1::perspectiveClick(wxMouseEvent& event)
 		radioMapa->SetValue(false);
 		inPerspective = true;
 		inMap = false;
+
+		//generujemy wykres!
 	}
 	else {
 		radioRzut->SetValue(true);
@@ -129,6 +129,8 @@ void GUIMyFrame1::outlineClick(wxMouseEvent& event)
 		radioRzut->SetValue(false);
 		inPerspective = false;
 		inMap = true;
+
+		//generujemy wykres!
 	}
 	else {
 		radioMapa->SetValue(true);
@@ -137,7 +139,25 @@ void GUIMyFrame1::outlineClick(wxMouseEvent& event)
 
 void GUIMyFrame1::printClick(wxMouseEvent& event)
 {
+	wxClientDC dc(panelNaWykres);
+	wxSize size = panelNaWykres->GetSize();
+	wxBitmap bitmap(size);
+	wxMemoryDC memDC;
+	memDC.SelectObject(bitmap);
+	memDC.Blit(0, 0, size.GetWidth(), size.GetHeight(), &dc, 0, 0);
+	memDC.SelectObject(wxNullBitmap);
+	wxImage printPicture = bitmap.ConvertToImage();
+	wxPrinter printer;
+	ImagePrintout printout("Image Printout", printPicture);
 
+	if (!printer.Print(this, &printout, true)) {
+		if (wxPrinter::GetLastError() == wxPRINTER_ERROR) {
+			wxMessageBox("There was a problem with printing.", "Error", wxOK);
+		}
+		else {
+			wxMessageBox("The printing was cancelled.", "Info", wxOK);
+		}
+	}
 }
 
 void GUIMyFrame1::saveClick(wxMouseEvent& event)
@@ -145,7 +165,6 @@ void GUIMyFrame1::saveClick(wxMouseEvent& event)
 	wxFileDialog saveFileDialog(this, "Choose a file", "", "", "PNG files (*.png)|*.png", wxFD_SAVE | wxFD_OVERWRITE_PROMPT);
 	if (saveFileDialog.ShowModal() == wxID_CANCEL) return;
 
-	//zapisywanie obrazu
 	wxClientDC dc(panelNaWykres);
 	wxSize size = panelNaWykres->GetSize();
 	wxBitmap bitmap(size);
