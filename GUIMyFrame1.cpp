@@ -13,11 +13,18 @@ GUIMyFrame1::GUIMyFrame1(wxWindow* parent)
 
 void GUIMyFrame1::showInfo(wxMouseEvent& event)
 {
+	wxMessageDialog* infoDialog = new wxMessageDialog(this, "-> use \"sqrt()\" as aquare root\n->use \"^n\" to raise to the n-th power", 
+															"How to plot?", wxOK | wxICON_INFORMATION);
+	infoDialog->ShowModal();
+	infoDialog->Destroy();
 }
 
 bool GUIMyFrame1::checkFunction()
-{	
-	if ( true ) {
+{
+	function = textCtrlFunkcja->GetValue().ToStdString();
+
+	//sprawdzanie porpawnosci wprowadzonej funkcji
+	if ( false ) {
 		function = "";
 		textCtrlFunkcja->SetValue("");
 
@@ -29,42 +36,77 @@ bool GUIMyFrame1::checkFunction()
 
 bool GUIMyFrame1::checkNumbers()
 {
-	if (!stod(textCtrlXMin->GetValue().ToStdString())) {
+	try {
+		xMin = stod(textCtrlXMin->GetValue().ToStdString());
+	}
+	catch (const std::invalid_argument&) {
 		textCtrlXMin->SetValue("");
 		return false;
 	}
-	xMin = stod(textCtrlXMin->GetValue().ToStdString());
+	catch (const std::out_of_range&) {
+		textCtrlXMin->SetValue("");
+		return false;
+	}
 
-	if (!stod(textCtrlXMax->GetValue().ToStdString())) {
+	try {
+		xMax = stod(textCtrlXMax->GetValue().ToStdString());
+	}
+	catch (const std::invalid_argument&) {
 		textCtrlXMax->SetValue("");
 		return false;
 	}
-	xMax = stod(textCtrlXMin->GetValue().ToStdString());
+	catch (const std::out_of_range&) {
+		textCtrlXMax->SetValue("");
+		return false;
+	}
 
-	if (!stod(textCtrlYMin->GetValue().ToStdString())) {
+	try {
+		yMin = stod(textCtrlYMin->GetValue().ToStdString());
+	}
+	catch (const std::invalid_argument&) {
 		textCtrlYMin->SetValue("");
 		return false;
 	}
-	yMin = stod(textCtrlXMin->GetValue().ToStdString());
+	catch (const std::out_of_range&) {
+		textCtrlYMin->SetValue("");
+		return false;
+	}
 
-	if (!stod(textCtrlYMax->GetValue().ToStdString())) {
+	try {
+		yMax = stod(textCtrlYMax->GetValue().ToStdString());
+	}
+	catch (const std::invalid_argument&) {
 		textCtrlYMax->SetValue("");
 		return false;
 	}
-	yMax = stod(textCtrlXMin->GetValue().ToStdString());
+	catch (const std::out_of_range&) {
+		textCtrlYMax->SetValue("");
+		return false;
+	}
 
-	if (!stod(textCtrlZMin->GetValue().ToStdString())) {
+	try {
+		zMin = stod(textCtrlZMin->GetValue().ToStdString());
+	}
+	catch (const std::invalid_argument&) {
 		textCtrlZMin->SetValue("");
 		return false;
 	}
-	zMin = stod(textCtrlZMax->GetValue().ToStdString());
+	catch (const std::out_of_range&) {
+		textCtrlZMin->SetValue("");
+		return false;
+	}
 
-	if (!stod(textCtrlXMin->GetValue().ToStdString())) {
+	try {
+		zMax = stod(textCtrlZMax->GetValue().ToStdString());
+	}
+	catch (const std::invalid_argument&) {
 		textCtrlZMax->SetValue("");
 		return false;
 	}
-	zMax = stod(textCtrlXMin->GetValue().ToStdString());
-
+	catch (const std::out_of_range&) {
+		textCtrlZMax->SetValue("");
+		return false;
+	}
 
 	return true;
 }
@@ -95,6 +137,7 @@ void GUIMyFrame1::outlineClick(wxMouseEvent& event)
 
 void GUIMyFrame1::printClick(wxMouseEvent& event)
 {
+
 }
 
 void GUIMyFrame1::saveClick(wxMouseEvent& event)
@@ -123,7 +166,6 @@ void GUIMyFrame1::generateClick(wxMouseEvent& event)
 	//gerneruj wykres
 	if (isPerspective()) {
 		//generuj rzut perspektywiczny
-		buttonGenerate->SetBackgroundColour(*wxLIGHT_GREY);
 	}
 	else {
 		//generuj mape konturowa
