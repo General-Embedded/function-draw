@@ -154,6 +154,9 @@ void GUIMyFrame1::printClick(wxMouseEvent& event)
 	memDC.Blit(0, 0, size.GetWidth(), size.GetHeight(), &dc, 0, 0);
 	memDC.SelectObject(wxNullBitmap);
 	wxImage printPicture = bitmap.ConvertToImage();
+	printPicture.AddHandler(new wxJPEGHandler);
+	printPicture.AddHandler(new wxPNGHandler);
+
 	wxPrinter printer;
 	ImagePrintout printout("Image Printout", printPicture);
 

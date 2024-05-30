@@ -37,7 +37,7 @@ private:
 
 public:
 	double countFunction(double x, double y);
-	void RecountFunctionIntoData(vector <vector <double> > funValues);
+	void RecountFunctionIntoData(vector<vector<double>> funValues);
 
 	Matrix4 XRotation(double alpha);
 	Matrix4 YRotation(double alpha);

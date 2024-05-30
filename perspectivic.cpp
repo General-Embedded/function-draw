@@ -4,7 +4,7 @@ double Perspectivic::countFunction(double x, double y) {
 	return x * x + y * y;
 }
 
-void Perspectivic::RecountFunctionIntoData(vector <vector <double> > funValues) {
+void Perspectivic::RecountFunctionIntoData(vector<vector<double>> funValues) {
 
 	double xmax = 1;
 	double xmin = -1;
