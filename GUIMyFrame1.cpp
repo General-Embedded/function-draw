@@ -37,6 +37,7 @@ bool GUIMyFrame1::checkNumbers()
 {
 	try {
 		xMin = stod(textCtrlXMin->GetValue().ToStdString());
+		textCtrlXMin->SetValue(to_string(xMin));
 	}
 	catch (const std::invalid_argument&) {
 		textCtrlXMin->SetValue("");
@@ -49,6 +50,7 @@ bool GUIMyFrame1::checkNumbers()
 
 	try {
 		xMax = stod(textCtrlXMax->GetValue().ToStdString());
+		textCtrlXMax->SetValue(to_string(xMax));
 	}
 	catch (const std::invalid_argument&) {
 		textCtrlXMax->SetValue("");
@@ -61,6 +63,7 @@ bool GUIMyFrame1::checkNumbers()
 
 	try {
 		yMin = stod(textCtrlYMin->GetValue().ToStdString());
+		textCtrlYMin->SetValue(to_string(yMin));
 	}
 	catch (const std::invalid_argument&) {
 		textCtrlYMin->SetValue("");
@@ -73,6 +76,7 @@ bool GUIMyFrame1::checkNumbers()
 
 	try {
 		yMax = stod(textCtrlYMax->GetValue().ToStdString());
+		textCtrlYMax->SetValue(to_string(yMax));
 	}
 	catch (const std::invalid_argument&) {
 		textCtrlYMax->SetValue("");
@@ -85,6 +89,7 @@ bool GUIMyFrame1::checkNumbers()
 
 	try {
 		zMin = stod(textCtrlZMin->GetValue().ToStdString());
+		textCtrlZMin->SetValue(to_string(zMin));
 	}
 	catch (const std::invalid_argument&) {
 		textCtrlZMin->SetValue("");
@@ -97,6 +102,7 @@ bool GUIMyFrame1::checkNumbers()
 
 	try {
 		zMax = stod(textCtrlZMax->GetValue().ToStdString());
+		textCtrlZMax->SetValue(to_string(zMax));
 	}
 	catch (const std::invalid_argument&) {
 		textCtrlZMax->SetValue("");
