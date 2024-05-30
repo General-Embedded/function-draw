@@ -1,4 +1,5 @@
 #include "GUIMyFrame1.h"
+#include "perspectivic.h"
 
 #include <vector>
 #include <fstream>
@@ -196,7 +197,7 @@ void GUIMyFrame1::generateClick(wxMouseEvent& event)
 	if (isPerspective()) {
 		//generuj rzut perspektywiczny
 		Perspectivic obj;
-		vector<vector<double>> vec;
+		vector<vector<double>> vec{ 5 };
 		obj.RecountFunctionIntoData(vec);
 		obj.Repaint(panelNaWykres);
 	}

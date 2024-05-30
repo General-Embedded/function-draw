@@ -1,7 +1,7 @@
 #ifndef __PERS__
 #define __PERS__
 
-#include "GUIMyFrame1.h"
+#include "GUI.h"
 #include "vecmat.h"
 
 #include <iostream>

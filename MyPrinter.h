@@ -15,11 +15,9 @@ public:
     bool OnPrintPage(int pageNum) override {
         wxDC* dc = GetDC();
         if (dc) {
-            FitThisSizeToPage(wxSize(pImage.GetWidth(), pImage.GetHeight()));
-            wxCoord xOffset = 10;
-            wxCoord yOffset = 10;
+            FitThisSizeToPage(wxSize(pImage.GetWidth()*2, pImage.GetHeight()*2));
             wxBitmap bitmap(pImage);
-            dc->DrawBitmap(bitmap, xOffset, yOffset, false);
+            dc->DrawBitmap(bitmap, 100, 100, false);
 
             return true;
         }
