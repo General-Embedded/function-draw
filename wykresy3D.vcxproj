@@ -22,11 +22,15 @@
     <ClCompile Include="GUI.cpp" />
     <ClCompile Include="GUIMyFrame1.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="perspectivic.cpp" />
+    <ClCompile Include="perspectivic.h" />
+    <ClCompile Include="vecmat.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GUI.h" />
     <ClInclude Include="GUIMYFrame1.h" />
     <ClInclude Include="MyPrinter.h" />
+    <ClInclude Include="vecmat.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>17.0</VCProjectVersion>

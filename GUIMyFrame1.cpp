@@ -1,4 +1,5 @@
 #include "GUIMyFrame1.h"
+
 #include <vector>
 #include <fstream>
 
@@ -185,6 +186,10 @@ void GUIMyFrame1::generateClick(wxMouseEvent& event)
 	//gerneruj wykres
 	if (isPerspective()) {
 		//generuj rzut perspektywiczny
+		Perspectivic obj;
+		vector<vector<double>> vec;
+		obj.RecountFunctionIntoData(vec);
+		obj.Repaint(panelNaWykres);
 	}
 	else {
 		//generuj mape konturowa

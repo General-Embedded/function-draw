@@ -10,7 +10,7 @@
 class ImagePrintout : public wxPrintout {
 public:
     ImagePrintout(const wxString& title, const wxImage& image)
-        : wxPrintout(title), m_image(image) {}
+        : wxPrintout(title), pImage(image) {}
 
     bool OnPrintPage(int pageNum) override {
         wxDC* dc = GetDC();
@@ -19,10 +19,10 @@ public:
             int* heightPtr = new int();
             GetPageSizePixels(widthPtr, heightPtr);
 
-            FitThisSizeToPage(wxSize(m_image.GetWidth(), m_image.GetHeight()));
-            wxCoord xOffset = (*widthPtr - m_image.GetWidth()) / 2;
-            wxCoord yOffset = (*heightPtr - m_image.GetHeight()) / 2;
-            wxBitmap bitmap(m_image);
+            FitThisSizeToPage(wxSize(pImage.GetWidth(), pImage.GetHeight()));
+            wxCoord xOffset = (*widthPtr - pImage.GetWidth()) / 2;
+            wxCoord yOffset = (*heightPtr - pImage.GetHeight()) / 2;
+            wxBitmap bitmap(pImage);
             dc->DrawBitmap(bitmap, xOffset, yOffset, false);
 
             delete widthPtr;
@@ -38,7 +38,7 @@ public:
     }
 
 private:
-    wxImage m_image;
+    wxImage pImage;
 };
 
 #endif
