@@ -228,35 +228,21 @@ MyFrame1::MyFrame1(wxWindow* parent, wxWindowID id, const wxString& title, const
 
 	// Connect Events
 	buttonInfo->Connect(wxEVT_ENTER_WINDOW, wxMouseEventHandler(MyFrame1::showInfo), NULL, this);
-	textCtrlFunkcja->Connect(wxEVT_COMMAND_TEXT_ENTER, wxCommandEventHandler(MyFrame1::enterFunction), NULL, this);
-	textCtrlXMin->Connect(wxEVT_COMMAND_TEXT_ENTER, wxCommandEventHandler(MyFrame1::enterXMin), NULL, this);
-	textCtrlXMax->Connect(wxEVT_COMMAND_TEXT_ENTER, wxCommandEventHandler(MyFrame1::enterXMax), NULL, this);
-	textCtrlYMin->Connect(wxEVT_COMMAND_TEXT_ENTER, wxCommandEventHandler(MyFrame1::enterYMin), NULL, this);
-	textCtrlYMax->Connect(wxEVT_COMMAND_TEXT_ENTER, wxCommandEventHandler(MyFrame1::enterYMax), NULL, this);
-	textCtrlZMin->Connect(wxEVT_COMMAND_TEXT_ENTER, wxCommandEventHandler(MyFrame1::enterZMin), NULL, this);
-	textCtrlZMax->Connect(wxEVT_COMMAND_TEXT_ENTER, wxCommandEventHandler(MyFrame1::enterZMax), NULL, this);
-	radioRzut->Connect(wxEVT_LEFT_DCLICK, wxMouseEventHandler(MyFrame1::perspectiveClick), NULL, this);
-	radioMapa->Connect(wxEVT_LEFT_DCLICK, wxMouseEventHandler(MyFrame1::outlineClick), NULL, this);
-	buttonPrint->Connect(wxEVT_LEFT_DCLICK, wxMouseEventHandler(MyFrame1::printClick), NULL, this);
-	buttonSave->Connect(wxEVT_LEFT_DCLICK, wxMouseEventHandler(MyFrame1::saveClick), NULL, this);
-	buttonGenerate->Connect(wxEVT_LEFT_DCLICK, wxMouseEventHandler(MyFrame1::generateClick), NULL, this);
+	radioRzut->Connect(wxEVT_COMMAND_BUTTON_CLICKED, wxMouseEventHandler(MyFrame1::perspectiveClick), NULL, this);
+	radioMapa->Connect(wxEVT_COMMAND_BUTTON_CLICKED, wxMouseEventHandler(MyFrame1::outlineClick), NULL, this);
+	buttonPrint->Connect(wxEVT_COMMAND_BUTTON_CLICKED, wxMouseEventHandler(MyFrame1::printClick), NULL, this);
+	buttonSave->Connect(wxEVT_COMMAND_BUTTON_CLICKED, wxMouseEventHandler(MyFrame1::saveClick), NULL, this);
+	buttonGenerate->Connect(wxEVT_COMMAND_BUTTON_CLICKED, wxMouseEventHandler(MyFrame1::generateClick), NULL, this);
 }
 
 MyFrame1::~MyFrame1()
 {
 	// Disconnect Events
 	buttonInfo->Disconnect(wxEVT_ENTER_WINDOW, wxMouseEventHandler(MyFrame1::showInfo), NULL, this);
-	textCtrlFunkcja->Disconnect(wxEVT_COMMAND_TEXT_ENTER, wxCommandEventHandler(MyFrame1::enterFunction), NULL, this);
-	textCtrlXMin->Disconnect(wxEVT_COMMAND_TEXT_ENTER, wxCommandEventHandler(MyFrame1::enterXMin), NULL, this);
-	textCtrlXMax->Disconnect(wxEVT_COMMAND_TEXT_ENTER, wxCommandEventHandler(MyFrame1::enterXMax), NULL, this);
-	textCtrlYMin->Disconnect(wxEVT_COMMAND_TEXT_ENTER, wxCommandEventHandler(MyFrame1::enterYMin), NULL, this);
-	textCtrlYMax->Disconnect(wxEVT_COMMAND_TEXT_ENTER, wxCommandEventHandler(MyFrame1::enterYMax), NULL, this);
-	textCtrlZMin->Disconnect(wxEVT_COMMAND_TEXT_ENTER, wxCommandEventHandler(MyFrame1::enterZMin), NULL, this);
-	textCtrlZMax->Disconnect(wxEVT_COMMAND_TEXT_ENTER, wxCommandEventHandler(MyFrame1::enterZMax), NULL, this);
-	radioRzut->Disconnect(wxEVT_LEFT_DCLICK, wxMouseEventHandler(MyFrame1::perspectiveClick), NULL, this);
-	radioMapa->Disconnect(wxEVT_LEFT_DCLICK, wxMouseEventHandler(MyFrame1::outlineClick), NULL, this);
-	buttonPrint->Disconnect(wxEVT_LEFT_DCLICK, wxMouseEventHandler(MyFrame1::printClick), NULL, this);
-	buttonSave->Disconnect(wxEVT_LEFT_DCLICK, wxMouseEventHandler(MyFrame1::saveClick), NULL, this);
-	buttonGenerate->Disconnect(wxEVT_LEFT_DCLICK, wxMouseEventHandler(MyFrame1::generateClick), NULL, this);
+	radioRzut->Disconnect(wxEVT_COMMAND_BUTTON_CLICKED, wxMouseEventHandler(MyFrame1::perspectiveClick), NULL, this);
+	radioMapa->Disconnect(wxEVT_COMMAND_BUTTON_CLICKED, wxMouseEventHandler(MyFrame1::outlineClick), NULL, this);
+	buttonPrint->Disconnect(wxEVT_COMMAND_BUTTON_CLICKED, wxMouseEventHandler(MyFrame1::printClick), NULL, this);
+	buttonSave->Disconnect(wxEVT_COMMAND_BUTTON_CLICKED, wxMouseEventHandler(MyFrame1::saveClick), NULL, this);
+	buttonGenerate->Disconnect(wxEVT_COMMAND_BUTTON_CLICKED, wxMouseEventHandler(MyFrame1::generateClick), NULL, this);
 
 }

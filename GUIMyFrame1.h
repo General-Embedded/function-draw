@@ -27,25 +27,18 @@ class GUIMyFrame1 : public MyFrame1
 {
 private:
 	string function = "x^2 + y^2";
-	int xMin = -10;
-	int xMax = 10;
-	int yMin = -10;
-	int yMax = 10;
-	int zMin = -10;
-	int zMax = 10;
+	double xMin = -10;
+	double xMax = 10;
+	double yMin = -10;
+	double yMax = 10;
+	double zMin = -10;
+	double zMax = 10;
 	bool inPerspective = true;
 	bool inMap = false;
 
 protected:
 	// Handlers for MyFrame1 events;
 	void showInfo(wxMouseEvent& event);
-	void enterFunction(wxCommandEvent& event);
-	void enterXMin(wxCommandEvent& event);
-	void enterXMax(wxCommandEvent& event);
-	void enterYMin(wxCommandEvent& event);
-	void enterYMax(wxCommandEvent& event);
-	void enterZMin(wxCommandEvent& event);
-	void enterZMax(wxCommandEvent& event);
 	void perspectiveClick(wxMouseEvent& event);
 	void outlineClick(wxMouseEvent& event);
 	void printClick(wxMouseEvent& event);
@@ -53,14 +46,15 @@ protected:
 	void generateClick(wxMouseEvent& event);
 
 	string getFunction() const { return function; }
-	bool checkFunction(string f) const;
+	bool checkFunction();
 
-	int getxMin() const { return xMin; }
-	int getxMax() const { return xMax; }
-	int getyMin() const { return yMin; }
-	int getyMax() const { return yMax; }
-	int getzMin() const { return zMin; }
-	int getzMax() const { return zMax; }
+	double getxMin() const { return xMin; }
+	double getxMax() const { return xMax; }
+	double getyMin() const { return yMin; }
+	double getyMax() const { return yMax; }
+	double getzMin() const { return zMin; }
+	double getzMax() const { return zMax; }
+	bool checkNumbers();
 
 	bool isPerspective() const { return inPerspective; }
 	bool isMap() const { return inMap; }

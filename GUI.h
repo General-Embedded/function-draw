@@ -24,6 +24,10 @@
 #include <wx/textctrl.h>
 #include <wx/radiobut.h>
 #include <wx/frame.h>
+#include <wx/wxprec.h>
+#include <wx/colordlg.h>
+#include <wx/dcbuffer.h>
+#include <wx/filefn.h> 
 
 ///////////////////////////////////////////////////////////////////////////
 
@@ -64,13 +68,6 @@ protected:
 
 	// Virtual event handlers, override them in your derived class
 	virtual void showInfo(wxMouseEvent& event) { event.Skip(); }
-	virtual void enterFunction(wxCommandEvent& event) { event.Skip(); }
-	virtual void enterXMin(wxCommandEvent& event) { event.Skip(); }
-	virtual void enterXMax(wxCommandEvent& event) { event.Skip(); }
-	virtual void enterYMin(wxCommandEvent& event) { event.Skip(); }
-	virtual void enterYMax(wxCommandEvent& event) { event.Skip(); }
-	virtual void enterZMin(wxCommandEvent& event) { event.Skip(); }
-	virtual void enterZMax(wxCommandEvent& event) { event.Skip(); }
 	virtual void perspectiveClick(wxMouseEvent& event) { event.Skip(); }
 	virtual void outlineClick(wxMouseEvent& event) { event.Skip(); }
 	virtual void printClick(wxMouseEvent& event) { event.Skip(); }
