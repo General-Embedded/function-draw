@@ -8,7 +8,7 @@
 #include <cmath>
 #include <fstream>
 #include "parser.h"
-void printPlane(const std::vector<std::vector<double>> a) {
+void printPlane(const std::vector<std::vector<double>>& a) {
     std::ofstream planeFile("plane.txt");
     if (!planeFile.is_open()) {
         std::cerr << "Error opening file!\n";
@@ -24,7 +24,7 @@ void printPlane(const std::vector<std::vector<double>> a) {
     planeFile.close();
 }
 
-void printPlane(std::vector<std::vector<double>> a, std::string fname){
+void printPlane(std::vector<std::vector<double>>& a, std::string fname){
     std::ofstream planeFile;
     planeFile.open(fname);
     if(!planeFile.is_open())
@@ -37,6 +37,7 @@ void printPlane(std::vector<std::vector<double>> a, std::string fname){
                 planeFile<<a[y][x]<<" ";
             }
         }
+    planeFile.close();
 }
 
 
@@ -184,10 +185,10 @@ std::string getRPN(std::string inputString) {
 
     char bitToken;
     std::string wholeToken;
-    std::cout << "in!\n";
+    //std::cout << "in!\n";
     for (size_t i = 0; i < inputString.length(); ++i) {
         bitToken = inputString.at(i);
-        std::cout << bitToken << "_\n";
+        //std::cout << bitToken << "_\n";
 
         if (std::isspace(bitToken)) {
             continue;  // Skip whitespace
@@ -269,7 +270,7 @@ std::string getRPN(std::string inputString) {
 /// @return 
 
 
-double computeNumber(std::string RPN, double x, double y, int sizeX, int sizeY){
+double computeNumber(std::string RPN, double x, double y){
     //std::cout<<RPN<<"\n";
 
     std::stack<double> sVar;
@@ -326,9 +327,47 @@ double computeNumber(std::string RPN, double x, double y, int sizeX, int sizeY){
 }
 
 
-/// @brief 
-/// @param RPN 
-/// @param sizeX 
-/// @param sizeY 
-/// @return 
+std::tuple<std::vector<std::vector<double>>, std::vector<double>, std::vector<double>> evaluatePlaneExpression(std::string expression, double xMin, double xMax, double yMin, double yMax){
+    std::string rpn = getRPN("y*sin(x)");
+    //printPlane(computePlane(rpn,100,100));
+    size_t sizeX = 1000;
+    size_t sizeY = 1000;
+    double dx = (xMax-xMin)/sizeX;
+    double dy = (yMax-yMin)/sizeY;
+    if(dx>dy){
+        sizeX=1000;
+        sizeY=sizeX*dy/dx;
+    } else {
+        sizeY=1000;
+        sizeX=sizeY*dx/dy;
+    }
+    
+    std::vector<std::vector<double>> result(sizeY, std::vector<double>(sizeX, 0.0));
+    std::vector<double> planeX, planeY;
+    std::cout<<"plane size: "<<sizeX<<" x "<<sizeY<<"\n";
 
+    for (size_t ix = 0; ix < sizeX; ++ix) {
+        planeX.push_back(xMin + ix * dx);
+        std::cout<<planeX[ix]<<std::endl;
+    }
+
+    {
+        double x = xMin;
+        double y = yMin;
+        for (size_t iy=0; iy<sizeY; iy++)
+        { 
+            for (size_t ix=0; ix<sizeX; ix++)
+            {
+                result[iy][ix] = computeNumber(rpn, (x), (y));
+                //planeX.push_back(x);
+                
+                //std::cout<<result[iy][ix]<<"\t"<< x<< '\t' << y<<std::endl;
+                x+=dx;
+            }
+            planeY.push_back(y);
+            x=xMin;
+            y+=dy;
+        }
+    }
+    return std::make_tuple(result, planeX, planeY);
+}

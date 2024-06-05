@@ -49,6 +49,7 @@
         "bitset": "cpp",
         "regex": "cpp",
         "ctime": "cpp",
-        "sstream": "cpp"
+        "sstream": "cpp",
+        "cinttypes": "cpp"
     }
 }
