@@ -6,6 +6,37 @@
 #include <cassert>
 #include <cctype>
 #include <cmath>
+#include <fstream>
+void printPlane(const std::vector<std::vector<double>> a) {
+    std::ofstream planeFile("plane.txt");
+    if (!planeFile.is_open()) {
+        std::cerr << "Error opening file!\n";
+        return;
+    }
+
+    for (const auto& row : a) {
+        for (const auto& val : row) {
+            planeFile << val << " ";
+        }
+        planeFile << "\n";
+    }
+    planeFile.close();
+}
+
+void printPlane(std::vector<std::vector<double>> a, std::string fname){
+    std::ofstream planeFile;
+    planeFile.open(fname);
+    if(!planeFile.is_open())
+        std::cerr<<"file cant be opened\n";
+    for (size_t y=0; y<a.size(); y++)
+        {
+            planeFile<<"\n";
+            for (size_t x=0; x<a[0].size(); x++)
+            {
+                planeFile<<a[y][x]<<" ";
+            }
+        }
+}
 
 template <typename T>
 std::vector<std::vector<T>> initVec(T a, size_t sizeX, size_t sizeY){
@@ -233,11 +264,6 @@ std::string getRPN(std::string inputString) {
 }
 
 
-
-
-
-
-
 /// @brief 
 /// @param RPN 
 /// @param sizeX 
@@ -245,11 +271,8 @@ std::string getRPN(std::string inputString) {
 /// @return 
 
 
-void computeNumber(std::string RPN, int sizeX, int sizeY){
-    std::cout<<RPN<<"\n";
-    std::vector<std::vector<double>> aVec;
-    std::vector<std::vector<double>> bVec;
-    std::vector<std::vector<double>> cVec;
+double computeNumber(std::string RPN, double x, double y, int sizeX, int sizeY){
+    //std::cout<<RPN<<"\n";
 
     std::stack<double> sVar;
     std::stack<std::string> sOp;
@@ -259,19 +282,17 @@ void computeNumber(std::string RPN, int sizeX, int sizeY){
 
     double a = 0;
     double b = 0;
-    double x = 1;
-    double y = 1;
-    std::cout<<RPN.length()<<" bytes long expression.\n";
+    //std::cout<<RPN.length()<<" bytes long expression.\n";
     for(size_t i=0; i <= RPN.length(); ++i){
-        std::cout<<tokenBit<<"\n";
+        //std::cout<<tokenBit<<"\n";
         tokenBit = RPN[i];
         if(tokenBit!='\0'&&i!=RPN.length()&&tokenBit!=' '){
             token+=tokenBit;
         }else{
-            std::cout<<token<<"is the current token.\n";
+            //std::cout<<token<<"is the current token.\n";
             if (std::isdigit(token.at(0)))
             {
-                std::cout<<token<<"pushed to sVar\n";
+                //std::cout<<token<<"pushed to sVar\n";
                 sVar.push(std::stod(token)); 
             } else if(token == "x"){
                 sVar.push(x);
@@ -285,23 +306,25 @@ void computeNumber(std::string RPN, int sizeX, int sizeY){
                     b = sVar.top();
                     sVar.pop();
                     sVar.push(evaluate(a,b,token));
-                    std::cout<<a<<b<<"evaluate op!\n";
-                    std::cout<<sVar.top()<<" at top!\n";
+                    //std::cout<<a<<b<<"evaluate op!\n";
+                    //std::cout<<sVar.top()<<" at top!\n";
                 }
                 else{
                     a = sVar.top();
                     sVar.pop();
                     sVar.push(evaluate(a,token));
-                    std::cout<<"evaluate func!\n";
+                    //std::cout<<"evaluate func!\n";
                 }
             }
             token.clear();
-            std::cout<<sVar.top()<<" at top!\n";
+            //std::cout<<sVar.top()<<" at top!\n";
         }
     }
-    std::cout<<"end\n";
-    std::cout<<sVar.top()<<" at top!\n";
-    std::cout<<sVar.top()<<"\n";
+    //std::cout<<"end\n";
+    //std::cout<<sVar.top()<<" at top!\n";
+    //std::cout<<sVar.top()<<"\n";
+
+    return sVar.top();
 }
 
 
@@ -326,6 +349,7 @@ std::vector<std::vector<double>> computePlane(std::string RPN, int sizeX, int si
         yVec = 1000;
         xVec = yVec*sizeY/sizeX;
     }
+    
 
     aVec.resize(yVec, std::vector<double>(xVec));
     bVec.resize(yVec, std::vector<double>(xVec));
@@ -334,17 +358,30 @@ std::vector<std::vector<double>> computePlane(std::string RPN, int sizeX, int si
     yConstVec.resize(yVec, std::vector<double>(xVec));
 
     //initialisation of x-y
+    {
+    size_t x=0;
+    for (size_t y=0; y<yVec; y++)
+        {
+            
+            for (; x<xVec; x++)
+            {
+                xConstVec[y][x]=x;
+                yConstVec[y][x] = y;
+            }
+            x=0;
+        }
+    }
+    
 
+    printPlane(xConstVec,"x.txt");
+    printPlane(yConstVec,"y.txt");
     std::stack<std::vector<std::vector<double>>> sVar;
     std::stack<std::string> sOp;
 
     std::string token;
-    char tokenBit;
+    char tokenBit = '\0';
 
-    double a = 0;
-    double b = 0;
-    double x = 1;
-    double y = 1;
+
     std::cout<<RPN.length()<<" bytes long expression.\n";
     for(size_t i=0; i <= RPN.length(); ++i){
         std::cout<<tokenBit<<"\n";
@@ -352,10 +389,10 @@ std::vector<std::vector<double>> computePlane(std::string RPN, int sizeX, int si
         if(tokenBit!='\0'&&i!=RPN.length()&&tokenBit!=' '){
             token+=tokenBit;
         }else{
-            std::cout<<token<<"is the current token.\n";
+            //std::cout<<token<<"is the current token.\n";
             if (std::isdigit(token.at(0)))
             {
-                std::cout<<token<<"pushed to sVar\n";
+                //std::cout<<token<<"pushed to sVar\n";
                 sVar.push(initVec(std::stod(token),xVec,yVec)); 
             } else if(token == "x"){
                 sVar.push(xConstVec);
@@ -376,7 +413,7 @@ std::vector<std::vector<double>> computePlane(std::string RPN, int sizeX, int si
                     aVec = sVar.top();
                     sVar.pop();
                     sVar.push(evaluate(aVec,token));
-                    std::cout<<"evaluate func!\n";
+                    //std::cout<<"evaluate func!\n";
                 }
             }
             token.clear();

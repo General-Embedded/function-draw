@@ -8,8 +8,11 @@ std::vector<std::vector<double>> evaluate(std::vector<std::vector<double>> a, st
 
 int precedence(char op);
 std::string getRPN(std::string input);
-void computeNumber(std::string RPN, int sizeX, int sizeY);
+double computeNumber(std::string RPN, double x, double y,  int sizeX, int sizeY);
 std::vector<std::vector<double>> computePlane(std::string RPN, int sizeX, int sizeY);
 
 template <typename T>
 std::vector<std::vector<T>> initVec(T);
+
+void printPlane(std::vector<std::vector<double>> a);
+void printPlane(std::vector<std::vector<double>> a, std::string fname);
