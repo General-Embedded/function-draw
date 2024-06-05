@@ -1,0 +1,17 @@
+void MyFrame::saveThePicture(wxCommandEvent& WXUNUSED(e)) {
+	wxFileDialog saveFileDialog(this, "Choose a file", "", "", "PNG files (*.png)|*.png", wxFD_SAVE | wxFD_OVERWRITE_PROMPT); //zapisuje jak .png
+	if (saveFileDialog.ShowModal() == wxID_CANCEL)
+		return;
+
+	imageSave = bitmap.ConvertToImage();
+	imageSave.AddHandler(new wxJPEGHandler);
+	imageSave.AddHandler(new wxPNGHandler);
+	imageSave.SaveFile(saveFileDialog.GetPath());
+}
+
+void MyFrame::OnButtonClicked(wxCommandEvent& event)
+{
+    wxMessageDialog* infoDialog = new wxMessageDialog(this, "This application plots 3D functions.", "Information", wxOK | wxICON_INFORMATION);
+    infoDialog->ShowModal();
+    infoDialog->Destroy();
+}
