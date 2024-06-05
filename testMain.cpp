@@ -1,7 +1,8 @@
 #include "parser.h"
+#include "computePlane.h"
 #include <iostream>
 int main(){
-    std::string rpn = getRPN("x+y");
+    std::string rpn = getRPN("sin(x)*cos(y)+(x*x-y*y)/(x*x+y*y+1)-cos(x*y)+x*x*sin(y)-y*y*cos(x)");
     //printPlane(computePlane(rpn,100,100));
     size_t sizeX = 1000;
     size_t sizeY = 1000;

@@ -1,3 +1,5 @@
+#pragma once
+
 #include <string>
 #include <vector>
 
@@ -12,7 +14,9 @@ double computeNumber(std::string RPN, double x, double y,  int sizeX, int sizeY)
 std::vector<std::vector<double>> computePlane(std::string RPN, int sizeX, int sizeY);
 
 template <typename T>
-std::vector<std::vector<T>> initVec(T);
+std::vector<std::vector<T>> initVec(T a, size_t sizeX, size_t sizeY){
+    return std::vector<std::vector<T>>(sizeY, std::vector<T>(sizeX, a));
+}
 
 void printPlane(std::vector<std::vector<double>> a);
 void printPlane(std::vector<std::vector<double>> a, std::string fname);
